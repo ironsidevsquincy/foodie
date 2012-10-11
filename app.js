@@ -37,8 +37,6 @@ db.once('open', function () {
       console.error(err.stack);
       res.send(500, 'Something broke!');
     });
-
-    app.set('Chef', Chef)
   });
 
   app.configure('development', function(){
@@ -72,17 +70,17 @@ db.once('open', function () {
     });
   });
 
-  app.get('/api/food/chefs', function(req, res) {
-    Chef.find(function (err, chefs) {
-      res.send(chefs);
-    });
-  });
+  // app.get('/api/food/chefs', function(req, res) {
+  //   Chef.find(function (err, chefs) {
+  //     res.send(chefs);
+  //   });
+  // });
 
-  app.get('/api/food/chefs/:chef', function(req, res) {
-    Chef.findById(req.params.chef, function (err, chef) {
-      res.send(chef);
-    });
-  });
+  // app.get('/api/food/chefs/:chef', function(req, res) {
+  //   Chef.findById(req.params.chef, function (err, chef) {
+  //     res.send(chef);
+  //   });
+  // });
 
   http.createServer(app).listen(app.get('port'), function(){
     console.log("Express server listening on port " + app.get('port'));
