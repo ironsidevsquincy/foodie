@@ -55,7 +55,7 @@ db.once('open', function () {
   app.post('/api/food/recipes', function(req, res) {
     var recipe = new Recipe(req.body); // TODO validation
     recipe.save(function(err){
-        res.send("saved!");
+        res.send("saved!\n");
     });
   });
 
@@ -76,7 +76,7 @@ db.once('open', function () {
   app.post('/api/food/chefs', function(req, res) {
     var chef = new Chef(req.body); // TODO validation
     chef.save(function(err){
-        res.send("saved!");
+        res.send("saved!\n");
     });
   });
 

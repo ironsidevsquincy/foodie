@@ -1,0 +1,38 @@
+{
+    "key": "nigel-slater-salade-nicoise-classic-recipe",
+    "name": "Salade niçoise",
+    "chef": "Nigel Slater",
+    "class": "Salads",
+    "item": "lifeandstyle/2010/aug/08/nigel-slater-salade-nicoise-classic-recipe",
+    "ingredients": [
+        {
+            "quantity": 200,
+            "unit": "grams",
+            "french beans": "french beans"
+        },
+        {
+            "quantity": 4,
+            "ingredient": "tomatoes"
+        },
+        {
+            "quantity": 8, 
+            "ingredient": "anchovies"
+        },
+        {
+            "quantity": 1,
+            "ingredient": "cos lettuce",
+            "tip": "or 2 litte gems"
+        },
+        {
+            "quantity": 12,
+            "ingredient": "black olives"
+        },
+        {
+            "ingredient": "parsley"
+        },
+        {
+            "quantity": 3,
+            "ingredient": "basil leaves"
+        }
+    ]
+}
