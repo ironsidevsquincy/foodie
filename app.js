@@ -14,7 +14,7 @@ var express = require('express')
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
- 
+
   // Models
   var Recipe = db.model('Recipe', recipeSchema);
   var Chef = db.model('Chef', chefSchema);
@@ -74,20 +74,20 @@ db.once('open', function () {
   });
 
   // Chefs
-  
+
   app.post('/api/food/chefs', function(req, res) {
     var chef = new Chef(req.body); // TODO validation
     chef.save(function(err){
         res.send("saved!\n");
     });
   });
- 
+
   app.get('/api/food/chefs', function(req, res) {
     Chef.find(function (err, chefs) {
       res.send(chefs);
     });
   });
-  
+
   app.get('/api/food/chefs/:chef', function(req, res) {
     Chef.findOne({"key": req.params.chef}).populate('chef').exec(function (err, chef) {
         var c = chef.toObject();
@@ -97,6 +97,8 @@ db.once('open', function () {
         })
     });
   });
+
+  // Server
 
   http.createServer(app).listen(app.get('port'), function(){
     console.log("Express server listening on port " + app.get('port'));
