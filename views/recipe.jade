@@ -6,11 +6,14 @@ block content
 
   h2(data-bind="text: name")
   p By
-    span(data-bind="text: ' ' + chef")
+    a(data-bind="text: ' ' + chef", href="/food/chefs/...")
   h3 Ingredients
+  div
+    img(data-bind="src: hero")
   ul(data-bind="foreach: ingredients")
     li
       p
         span(data-bind="text: quantity + ' '")
-        span(data-bind="text: ingredient")
-
+        a(data-bind="text: ingredient", href="/food/ingredient/...")
+  div(data-bind="foreach: preparationSteps")
+      p(data-bind="text: p")

@@ -1,9 +1,11 @@
 {
     "key": "nigel-slater-salade-nicoise-classic-recipe",
+    "synopsis": "The big late-summer salad. There are those who would add tuna to this tomato, bean and lettuce salad, but I think it complicates matters. However, there are certain additions that are pretty much essential if your salad is to be worthy of its name. Anchovies, olives and basil are there to give the salad its sense of place. Tomatoes likewise. The type of lettuce is debatable, but it is no place for a designer variety. This is Cos or Little Gem territory. The tomatoes should be the knobbly French Marmande, some really ripe plum tomatoes if not. Long French beans are what I expect here.",
     "name": "Salade niçoise",
     "chef": "Nigel Slater",
-    "class": "Salads",
-    "item": "lifeandstyle/2010/aug/08/nigel-slater-salade-nicoise-classic-recipe",
+    "dish": ["Salads", "Salad Niçoise"],
+    "uri": "lifeandstyle/2010/aug/08/nigel-slater-salade-nicoise-classic-recipe",
+    "hero": "http://static.guim.co.uk/sys-images/Guardian/Pix/Gallery_Images/2010/8/5/1281014257443/Nigel-Slaters-salad-Ni-oi-006.jpg",
     "ingredients": [
         {
             "quantity": 200,
@@ -28,11 +30,31 @@
             "ingredient": "black olives"
         },
         {
-            "ingredient": "parsley"
+            "quantity": 1,
+            "ingredient": "parsley sprig"
         },
         {
             "quantity": 3,
             "ingredient": "basil leaves"
+        }
+    ],
+    "preparationSteps": [
+        {
+            "p": "Top and tail the beans and cook them briefly in salted boiling water. Drain and chill in cold water. Cut a tiny cross in the skin at the round end of the tomatoes and dunk them in boiling water. After 30 seconds remove them and peel off the skins. Cut the tomatoes into quarters."
+        },
+        {
+            "p": "Rinse the anchovies. If you are using salted ones, then pull away the bones and check for stray whiskers. Wash the lettuce, tearing up the leaves if they are large, and put them in a deep serving dish. Arrange the tomatoes, anchovies, olives and beans among the leaves. Chop the parsley, but not too finely, and add it with the basil to the salad."
+        },
+        {
+            "p": "Make the dressing by whisking the vinegar and mustard together with the peeled and crushed garlic and a seasoning of salt and pepper, then whisking in the oil. Toss gently with the ingredients and serve."
+        },
+        {
+            "crosshead": "The trick",
+            "p": "If you decide to skin your tomatoes, take care not to 'cook' the tomato when you drop it into boiling water. Quartering them rather than slicing them will prevent the salad becoming 'wet'. No olives, no salade Niçoise. I like the oval, matt purple olives from Provence. What is all wrong are green olives, stuffed olives and, worst of all, no olives at all. Garlic needs to figure somewhere in this, otherwise it ain't Niçoise"
+        },
+        {
+            "crosshead": "The extras",
+            "p": "The extras: Feelings run high about 'extras'. Someone, somewhere, will argue that at least one of these is essential for the authentic salade. Artichoke hearts. Boiled eggs. Capers. But radishes, peppers, white haricots and, I think, new potatoes have taken a wrong turning on the way to Cannes. They should have turned left in Dijon."
         }
     ]
 }

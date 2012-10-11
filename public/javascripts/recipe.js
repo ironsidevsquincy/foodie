@@ -7,7 +7,6 @@ reqwest({
   	success: function (recipe) {
         domready(function() {
 			ko.applyBindings(recipe);
-
 		})
     }
 })
