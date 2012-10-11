@@ -1,6 +1,6 @@
 reqwest({
     url: '/api/food/chefs',
-    data: 'json',
+    type: 'json',
   	method: 'get',
   	success: function (chefs) {
       domready(function() {
