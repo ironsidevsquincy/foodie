@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1= title
+  script(type="text/javascript", src="/javascripts/recipes.js")
+
+  div(data-bind="foreach: recipes")
+    h2
+      a(data-bind="attr: {href: '/food/recipes/' + key}, text: name")

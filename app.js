@@ -6,6 +6,7 @@
 var express = require('express')
   , http = require('http')
   , path = require('path')
+  , routes = require('./routes')
   , mongoose = require('mongoose')
   , recipeSchema = require('./models/recipes.js')
   , chefSchema = require('./models/chefs.js')
@@ -19,6 +20,7 @@ db.once('open', function () {
   var Chef = db.model('Chef', chefSchema);
   
   // Express
+
   var app = express();
 
   app.configure(function(){
@@ -41,6 +43,14 @@ db.once('open', function () {
   app.configure('development', function(){
     app.use(express.errorHandler());
   });
+
+  // WWW
+  app.get('/food/chefs', routes.chefs);
+  app.get('/food/chefs/:chef', routes.chef);
+  app.get('/food/recipes', routes.recipes);
+  app.get('/food/recipes/:recipe', routes.recipe);
+
+  // API
   
   // Recipes
   
@@ -50,13 +60,13 @@ db.once('open', function () {
         res.send("saved!\n");
     });
   });
-  
+
   app.get('/api/food/recipes', function(req, res) {
     Recipe.find(function (err, recipes) {
       res.send(recipes);
     });
   });
-  
+
   app.get('/api/food/recipes/:recipe', function(req, res) {
     Recipe.findOne({"key": req.params.recipe},  function (err, recipe) {
         res.send(recipe);
@@ -87,8 +97,6 @@ db.once('open', function () {
         })
     });
   });
-
-  // Server
 
   http.createServer(app).listen(app.get('port'), function(){
     console.log("Express server listening on port " + app.get('port'));
