@@ -6,6 +6,7 @@
 var express = require('express')
   , http = require('http')
   , path = require('path')
+  , routes = require('./routes')
   , mongoose = require('mongoose')
   , db = mongoose.createConnection('localhost', 'foodie');
 
@@ -38,12 +39,21 @@ db.once('open', function () {
       console.error(err.stack);
       res.send(500, 'Something broke!');
     });
+
+    app.set('Chef', Chef)
   });
 
   app.configure('development', function(){
     app.use(express.errorHandler());
   });
 
+  // WWW
+  app.get('/food/chefs', routes.chefs);
+  app.get('/food/chefs/:chef', routes.chef);
+  app.get('/food/recipes', routes.recipes);
+  app.get('/food/recipes/:recipe', routes.recipe);
+
+  // API
   app.get('/api/food/chefs', function(req, res) {
     Chef.find(function (err, chefs) {
       res.send(chefs);
