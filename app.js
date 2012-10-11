@@ -10,6 +10,7 @@ var express = require('express')
   , mongoose = require('mongoose')
   , recipeSchema = require('./models/recipes.js')
   , chefSchema = require('./models/chefs.js')
+  , bookSchema = require('./models/books.js')
   , db = mongoose.createConnection('localhost', 'foodie');
 
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -18,6 +19,7 @@ db.once('open', function () {
   // Models
   var Recipe = db.model('Recipe', recipeSchema);
   var Chef = db.model('Chef', chefSchema);
+  var Book = db.model('Book', bookSchema);
   
   // Express
 
@@ -52,11 +54,24 @@ db.once('open', function () {
 
   // API
   
+  // Books 
+  
+  app.post('/api/food/books', function(req, res) {
+    var book = new Book(req.body); // TODO validation
+    book.save(function(err){
+        if (err)
+            console.log(err);
+        res.send("saved!\n");
+    });
+  });
+
   // Recipes
   
   app.post('/api/food/recipes', function(req, res) {
     var recipe = new Recipe(req.body); // TODO validation
     recipe.save(function(err){
+        if (err)
+            console.log(err);
         res.send("saved!\n");
     });
   });
@@ -78,6 +93,8 @@ db.once('open', function () {
   app.post('/api/food/chefs', function(req, res) {
     var chef = new Chef(req.body); // TODO validation
     chef.save(function(err){
+        if (err)
+            console.log(err);
         res.send("saved!\n");
     });
   });
@@ -89,12 +106,25 @@ db.once('open', function () {
   });
 
   app.get('/api/food/chefs/:chef', function(req, res) {
+
+
     Chef.findOne({"key": req.params.chef}).populate('chef').exec(function (err, chef) {
         var c = chef.toObject();
-        Recipe.find({"chef": chef.name}, function(err, recipes){
-            c.recipes = recipes
-            res.send(c);
+        var r = Recipe.find({"chef": chef.name}, function(err, recipes){
+            
+            if (!err)
+                c.recipes = recipes
+            
+            var b = Book.find({"author": chef.name}, function(err, books){
+            
+                if (!err)
+                    c.books = books
+            
+                res.send(c);
+            })
+            
         })
+
     });
   });
 

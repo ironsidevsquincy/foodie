@@ -1,0 +1,19 @@
+{
+    "title": "Kitchen Diaries II",
+    "author": "Nigel Slater",
+    "price": 1999,
+    "averageReview": 5,
+    "description": "A beautiful and inspiring companion volume to the acclaimed 'Kitchen Diaries', which sold more than 300,000 copies. Slater returns to the inspiring structure of the first volume, recording the food he buys, prepares, eats and shares throughout the year. Features more than 300 recipes, many from his successful TV series 'Simple Suppers'. A new series will air to tie in with this publication. 'The greatest cookery writer of them all.'",
+    "hero": "http://bookshop.blackwell.co.uk/jsp/id/The_Kitchen_Diaries_II/9780007256037",
+    "isbn": "9780007256037",
+    "reviews": [
+        {
+            "uri": "books/2012/sep/23/kitchen-diaries-nigel-slater-review"
+        }
+    ],
+    "extracts": [
+        {
+            "uri": "lifeandstyle/2012/sep/16/nigel-slater-kitchen-diaries-2"
+        }    
+    ]
+}
