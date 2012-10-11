@@ -9,16 +9,15 @@ var express = require('express')
   , routes = require('./routes')
   , mongoose = require('mongoose')
   , recipeSchema = require('./models/recipes.js')
+  , chefSchema = require('./models/chefs.js')
   , db = mongoose.createConnection('localhost', 'foodie');
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
 
-  var chefSchema = new mongoose.Schema({
-    name: String
-  });
-
+  // Models
   var Recipe = db.model('Recipe', recipeSchema);
+  var Chef = db.model('Chef', chefSchema);
 
   var app = express();
 
@@ -50,6 +49,9 @@ db.once('open', function () {
   app.get('/food/recipes/:recipe', routes.recipe);
 
   // API
+
+  // Recipes
+
   app.post('/api/food/recipes', function(req, res) {
     var recipe = new Recipe(req.body); // TODO validation
     recipe.save(function(err){
@@ -65,22 +67,36 @@ db.once('open', function () {
 
   app.get('/api/food/recipes/:recipe', function(req, res) {
     Recipe.findOne({"key": req.params.recipe},  function (err, recipe) {
-        console.log(err);
         res.send(recipe);
     });
   });
 
-  // app.get('/api/food/chefs', function(req, res) {
-  //   Chef.find(function (err, chefs) {
-  //     res.send(chefs);
-  //   });
-  // });
+  // Chefs
 
-  // app.get('/api/food/chefs/:chef', function(req, res) {
-  //   Chef.findById(req.params.chef, function (err, chef) {
-  //     res.send(chef);
-  //   });
-  // });
+  app.post('/api/food/chefs', function(req, res) {
+    var chef = new Chef(req.body); // TODO validation
+    chef.save(function(err){
+        res.send("saved!");
+    });
+  });
+
+  app.get('/api/food/chefs', function(req, res) {
+    Chef.find(function (err, chefs) {
+      res.send(chefs);
+    });
+  });
+
+  app.get('/api/food/chefs/:chef', function(req, res) {
+    Chef.findOne({"key": req.params.chef}).populate('chef').exec(function (err, chef) {
+        var c = chef.toObject();
+        Recipe.find({"chef": chef.name}, function(err, recipes){
+            c.recipes = recipes
+            res.send(c);
+        })
+    });
+  });
+
+  // Server
 
   http.createServer(app).listen(app.get('port'), function(){
     console.log("Express server listening on port " + app.get('port'));

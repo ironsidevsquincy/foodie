@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var recipeSchema = new mongoose.Schema({
     name: String,
     key: String,
-    chef: String,
+    chef: String, 
     class: String, 
     article: String,
     ingredients: [{
