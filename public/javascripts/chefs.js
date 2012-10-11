@@ -4,7 +4,7 @@ reqwest({
   	method: 'get',
   	success: function (chefs) {
       domready(function() {
-        ko.applyBindings(chefs);
-    	})
+        ko.applyBindings({'chefs': chefs});
+      })
     }
 })
