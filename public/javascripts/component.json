@@ -1,0 +1,10 @@
+{
+  "name": "foodie",
+  "version": "0.1.0",
+  "dependencies": {
+    "bootstrap": "*",
+    "domready": "*",
+    "knockout": "https://github.com/downloads/SteveSanderson/knockout/knockout-2.1.0.js",
+    "reqwest": "https://github.com/ded/reqwest.git"
+  }
+}
