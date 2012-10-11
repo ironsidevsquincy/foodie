@@ -1,4 +1,5 @@
 {
+    "key": "perfect-salade-nicoise",
     "name": "Perfect salade niçoise",
     "chef": "Felicity Cloake",
     "class": "Salads",
@@ -47,8 +48,8 @@
             "tip": "cut in to slivers"
         },
         {
-            "quantity": "a few",
-            "ingredient": "basil",
+            "quantity": 3,
+            "ingredient": "basil leaves",
             "tip": "roughly torn"
         }
     ]

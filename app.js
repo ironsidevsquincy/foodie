@@ -43,15 +43,22 @@ db.once('open', function () {
   });
 
   app.post('/api/food/recipes', function(req, res) {
-    var recipe = new Recipe(req.body);
+    var recipe = new Recipe(req.body); // TODO validation
     recipe.save(function(err){
-        console.log(err);
+        res.send("saved!");
     });
   });
   
   app.get('/api/food/recipes', function(req, res) {
     Recipe.find(function (err, recipes) {
       res.send(recipes);
+    });
+  });
+  
+  app.get('/api/food/recipes/:recipe', function(req, res) {
+    Recipe.findOne({"key": req.params.recipe},  function (err, recipe) {
+        console.log(err);
+        res.send(recipe);
     });
   });
 
