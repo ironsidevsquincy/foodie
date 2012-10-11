@@ -1,0 +1,54 @@
+{
+    "name": "Perfect salade niçoise",
+    "chef": "Felicity Cloake",
+    "item": "lifeandstyle/wordofmouth/2012/aug/01/how-make-perfect-salade-nicoise",
+    "ingredients": [
+        {
+            "quantity": 2,
+            "ingredient": "egg"
+        },
+        {
+            "quantity": 500,
+            "unit": "grams",
+            "ingredient": "broad beans",
+            "alternate": "french beans"
+        },
+        {
+            "quantity": 4,
+            "ingredient": "ripe tomatoes"
+        },
+        {
+            "quantity": 0.5, 
+            "ingredient": "cucumber"
+        },
+        {
+            "quantity": 2,
+            "ingredient": "spring onion"
+        },
+        {
+            "quantity": 0.5,
+            "ingredient": "red pepper"
+        },
+        {
+            "quantity": 50,
+            "unit": "grams",
+            "ingredient": "black olives",
+            "tip": "small and pitted"
+        },
+        {
+            "quantity": 1,
+            "unit": "tablespoon",
+            "ingredient": "capers"
+        },
+        {
+            "quantity": 4,
+            "ingredient": "anchovies",
+            "tip": "cut in to slivers"
+        },
+        {
+            "quantity": "a few",
+            "ingredient": "basil",
+            "tip": "roughly torn"
+        }
+    ]
+}
