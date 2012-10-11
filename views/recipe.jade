@@ -2,6 +2,15 @@ extends layout
 
 block content
   h1= title
-  script(type='text/javascript', src='/javascripts/recipe.js')
+  script(type="text/javascript", src="/javascripts/recipe.js")
 
-  h2(data-bind='text: name')
+  h2(data-bind="text: name")
+  p By
+    span(data-bind="text: ' ' + chef")
+  h3 Ingredients
+  ul(data-bind="foreach: ingredients")
+    li
+      p
+        span(data-bind="text: quantity + ' '")
+        span(data-bind="text: ingredient")
+

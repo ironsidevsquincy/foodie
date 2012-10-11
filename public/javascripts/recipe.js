@@ -1,17 +1,14 @@
-// reqwest({
-//     url: '/api/food/recipes/5076baf1382fe8d444000001'
-//   , method: 'get'
-//   , success: function (response) {
-//       console.log(response);
-//     }
-// })
+var recipeId = window.location.pathname.split('/').pop()
 
-domready(function() {
+reqwest({
+    url: '/api/food/recipes/' + recipeId,
+    type: 'json',
+  	method: 'get',
+  	success: function (recipe) {
+        domready(function() {
+			ko.applyBindings(recipe);
 
-	var recipe = {
-		'name': 'Salad'
-	};
-
-	ko.applyBindings(recipe);
-
+		})
+    }
 })
+
