@@ -7,6 +7,7 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , mongoose = require('mongoose')
+  , recipeSchema = require('./models/recipes.js')
   , db = mongoose.createConnection('localhost', 'foodie');
 
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -15,12 +16,9 @@ db.once('open', function () {
   var chefSchema = new mongoose.Schema({
     name: String
   });
-  var Chef = db.model('Chef', chefSchema);
-  // var yotam = new Chef({name: 'Yotam Ottolenghi'});
-  // yotam.save();
-  // var delia = new Chef({name: 'Delia Smith'});
-  // delia.save();
 
+  var Recipe = db.model('Recipe', recipeSchema);
+  
   var app = express();
 
   app.configure(function(){
@@ -44,11 +42,25 @@ db.once('open', function () {
     app.use(express.errorHandler());
   });
 
+  app.post('/api/food/recipes', function(req, res) {
+    var recipe = new Recipe(req.body);
+    recipe.save(function(err){
+        console.log(err);
+    });
+  });
+  
+  app.get('/api/food/recipes', function(req, res) {
+    Recipe.find(function (err, recipes) {
+      res.send(recipes);
+    });
+  });
+
   app.get('/api/food/chefs', function(req, res) {
     Chef.find(function (err, chefs) {
       res.send(chefs);
     });
   });
+  
   app.get('/api/food/chefs/:chef', function(req, res) {
     Chef.findById(req.params.chef, function (err, chef) {
       res.send(chef);
