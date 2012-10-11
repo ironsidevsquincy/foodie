@@ -8,6 +8,7 @@ var express = require('express')
   , path = require('path')
   , routes = require('./routes')
   , mongoose = require('mongoose')
+  , recipeSchema = require('./models/recipes.js')
   , db = mongoose.createConnection('localhost', 'foodie');
 
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -16,11 +17,8 @@ db.once('open', function () {
   var chefSchema = new mongoose.Schema({
     name: String
   });
-  var Chef = db.model('Chef', chefSchema);
-  // var yotam = new Chef({name: 'Yotam Ottolenghi'});
-  // yotam.save();
-  // var delia = new Chef({name: 'Delia Smith'});
-  // delia.save();
+
+  var Recipe = db.model('Recipe', recipeSchema);
 
   var app = express();
 
@@ -54,11 +52,32 @@ db.once('open', function () {
   app.get('/food/recipes/:recipe', routes.recipe);
 
   // API
+  app.post('/api/food/recipes', function(req, res) {
+    var recipe = new Recipe(req.body); // TODO validation
+    recipe.save(function(err){
+        res.send("saved!");
+    });
+  });
+
+  app.get('/api/food/recipes', function(req, res) {
+    Recipe.find(function (err, recipes) {
+      res.send(recipes);
+    });
+  });
+
+  app.get('/api/food/recipes/:recipe', function(req, res) {
+    Recipe.findOne({"key": req.params.recipe},  function (err, recipe) {
+        console.log(err);
+        res.send(recipe);
+    });
+  });
+
   app.get('/api/food/chefs', function(req, res) {
     Chef.find(function (err, chefs) {
       res.send(chefs);
     });
   });
+
   app.get('/api/food/chefs/:chef', function(req, res) {
     Chef.findById(req.params.chef, function (err, chef) {
       res.send(chef);

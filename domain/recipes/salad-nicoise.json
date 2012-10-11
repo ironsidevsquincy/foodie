@@ -1,6 +1,8 @@
 {
+    "key": "perfect-salade-nicoise",
     "name": "Perfect salade niçoise",
     "chef": "Felicity Cloake",
+    "class": "Salads",
     "item": "lifeandstyle/wordofmouth/2012/aug/01/how-make-perfect-salade-nicoise",
     "ingredients": [
         {
@@ -46,8 +48,8 @@
             "tip": "cut in to slivers"
         },
         {
-            "quantity": "a few",
-            "ingredient": "basil",
+            "quantity": 3,
+            "ingredient": "basil leaves",
             "tip": "roughly torn"
         }
     ]
