@@ -23,7 +23,13 @@ block content
     li.ingredient
       p
         span(data-bind="text: quantity + ' '")
+        <!-- ko if: $data.unit -->
+        span(data-bind="text: unit + ' of '")
+        <!-- /ko -->
         a(data-bind="text: ingredient, attr: {href: '/food/ingredients/' + encodeURIComponent(ingredient)}")
+        <!-- ko if: $data.tip -->
+        span(data-bind="text: ' (' + tip + ')'")
+        <!-- /ko -->
   div(data-bind="foreach: preparationSteps")
       p(data-bind="text: p")
 
@@ -38,7 +44,7 @@ block content
         img(data-bind="attr: {src: hero}")
         p(data-bind="text: description")
         p
-            span Our price: 
+            span Our price:
             span(data-bind="text: price")
         ul
             span(data-bind="foreach: reviews")

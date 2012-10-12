@@ -76,10 +76,10 @@ db.once('open', function () {
         var link = window.$('<a></a>')
           .attr('href', 'http://www.ocado.com' + productImage.attr('href'))
           .text('Buy from Ocado - ' + product.find('.typicalPrice').text());
-        var h3 = window.$('<h3></h3>')
+        var h4 = window.$('<h4></h4>')
           .append(link)
         var ingredient = window.$('<div></div>')
-          .append(h3)
+          .append(h4)
           .append(productImage.find('img'))
 
         res.setHeader('Cache-Control', 'max-age=3600, public');
