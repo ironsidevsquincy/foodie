@@ -3,13 +3,21 @@ extends layout
 block content
   h1= title
   script(type="text/javascript", src="/javascripts/recipe.js")
-
+   
+  # dishes - other Salads, other version of Salad Niscoise
+   
+  ul
+    li
+        a(href="nigel-slater-salade-nicoise-classic-recipe/shopping")
+          span view as shopping list
+  
+        
   h2(data-bind="text: name")
+  div
+    p(data-bind="text: hero")
   p By
     a(data-bind="text: ' ' + chef", href="/food/chefs/...")
   h3 Ingredients
-  div
-    img(data-bind="src: hero")
   ul(data-bind="foreach: ingredients")
     li
       p
@@ -17,3 +25,8 @@ block content
         a(data-bind="text: ingredient", href="/food/ingredient/...")
   div(data-bind="foreach: preparationSteps")
       p(data-bind="text: p")
+
+  h3= "Wine"
+  p Recommendations brought to you by wine.com
+  h3= "Books"
+  p A list of books this chef has written 
