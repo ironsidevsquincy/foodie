@@ -2,5 +2,5 @@
     "name"  : "eggs",
     "description" : "Eggs are a useful source of protein, iodine and essential vitamins and are almost indispensable to the cook. The majority of eggs available are hens' eggs.",
     "type" : "poultry",
-    "wikiurl" : "Egg_(food)"
+    "wikiId" : "Egg_(food)"
 }

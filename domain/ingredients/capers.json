@@ -2,5 +2,5 @@
     "name"  : "capers",
     "description" : "The pickled flower buds of the caper bush, which grows wild all over the Mediterranean. Fresh capers are picked and immediately preserved in brine or wine vinegar, or are packed in salt.",
     "type" : "vegetable",
-    "wikiurl" : "Caper"
+    "wikiId" : "Caper"
 }
