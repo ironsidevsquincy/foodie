@@ -76,8 +76,8 @@ db.once('open', function () {
     });
   });
   
-  // Books 
-  
+  // Books
+
   app.post('/api/food/books', function(req, res) {
     var book = new Book(req.body); // TODO validation
     book.save(function(err){
@@ -88,7 +88,7 @@ db.once('open', function () {
   });
 
   // Recipes
-  
+
   app.post('/api/food/recipes', function(req, res) {
     var recipe = new Recipe(req.body); // TODO validation
     recipe.save(function(err){
@@ -110,9 +110,12 @@ db.once('open', function () {
         Book.find({"author": recipe.chef}, function(err, books){
             if (!err)
                 r.books = books
-            res.send(r);
+            var c = Chef.findOne({"name": recipe.chef}, function(err, chef){
+            if (!err && chef) r.chef = chef
+                res.send(r);
+                })
         })
-    });
+     });
   });
 
   // Chefs
