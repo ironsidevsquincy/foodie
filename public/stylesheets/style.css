@@ -68,7 +68,6 @@ div#logo {
     margin-left: -50px;
 }
 
-<<<<<<< HEAD
 #ocado-list{
   margin:0;
   padding:0;
@@ -79,7 +78,7 @@ div#logo {
   width:130px;
   height:260px;
   float:left;
-  margin-left:10px;
+  margin-right:10px;
   margin-bottom:10px;
 }
 #ocado-list li h4{
@@ -87,12 +86,10 @@ div#logo {
   font-size:0.9em;
   margin-bottom:5px;
 }
-=======
+
 .biog {
     width: 50%;
     float: right;
     background-color: lightblue;
     padding: 11px;
 }
-
->>>>>>> be9b43ac8cab2f46013bc5e9ef4e938ba2567a7a

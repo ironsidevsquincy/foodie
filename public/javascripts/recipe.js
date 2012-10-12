@@ -19,6 +19,7 @@ reqwest({
             method: 'get',
             success: function(body) {
               var product = $(body).find('#prodList .productDetails').first();
+              if (!product.length) return;
               var productImage = product.find('.productImageContainer a');
               var link = $('<a></a>')
                 .attr('href', 'http://www.ocado.com' + productImage.attr('href'))
