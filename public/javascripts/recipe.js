@@ -7,6 +7,9 @@ reqwest({
   	success: function (recipe) {
       domready(function() {
   			ko.applyBindings(recipe);
+
+        bonzo(qwery('body')).append('<h3>Buy from Ocado</h3><ul id="ocado-list"></ul>');
+
         // get all the ingredients from ocado
         var ingredients = qwery('.ingredient');
         for (var i in ingredients) {
@@ -15,10 +18,7 @@ reqwest({
             type: 'html',
             method: 'get',
             success: function(ingredientData) {
-              var ingredientName = encodeURIComponent(this.url.split('/').pop());
-              var ingredient = qwery('.ingredient a[href$="' + ingredientName + '"]', document.body);
-              // add ocado data
-              bonzo(bonzo(ingredient).parent()).append(ingredientData);
+              bonzo(qwery('#ocado-list')).append(ingredientData);
             }
           })
         }

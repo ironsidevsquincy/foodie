@@ -6,7 +6,7 @@ body {
   line-height: 24px;
   font-family: 'Georgia', serif;
   margin: 0px auto;
-  width: 600px; 
+  width: 600px;
   padding-bottom: 30%;
 }
 
@@ -39,7 +39,7 @@ nav {
 }
 
 nav a, nav span {
-   padding-right: 11px; 
+   padding-right: 11px;
 }
 
 nav span {
@@ -64,5 +64,17 @@ div#logo {
     margin-left: -50px;
 }
 
-
-
+#ocado-list{
+  margin:0;
+  padding:0;
+}
+#ocado-list li{
+  display:inline-block;
+  vertical-align: top;
+  width:130px;
+  float:left;
+}
+#ocado-list li h4{
+  margin:0;
+  font-size:0.9em;
+}
