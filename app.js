@@ -97,7 +97,7 @@ db.once('open', function () {
     ingredient.save(function(err){
         if (err)
             console.log(err);
-        res.send("ingredient saved!\n");
+        res.send(req.body.name + " ingredient saved!\n");
     });
   });
 
@@ -120,7 +120,7 @@ db.once('open', function () {
     book.save(function(err){
         if (err)
             console.log(err);
-        res.send("book saved!\n");
+        res.send(req.body.title + " book saved!\n");
     });
   });
 
@@ -131,7 +131,7 @@ db.once('open', function () {
     recipe.save(function(err){
         if (err)
             console.log(err);
-        res.send("recipe saved!\n");
+        res.send(req.body.name + " recipe saved!\n");
     });
   });
 
@@ -162,7 +162,7 @@ db.once('open', function () {
     chef.save(function(err){
         if (err)
             console.log(err);
-        res.send("chef saved!\n");
+        res.send(req.body.name + " chef saved!\n");
     });
   });
 
