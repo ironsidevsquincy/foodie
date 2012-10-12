@@ -11,6 +11,7 @@ var express = require('express')
   , recipeSchema = require('./models/recipes.js')
   , chefSchema = require('./models/chefs.js')
   , bookSchema = require('./models/books.js')
+  , ingredientSchema = require('./models/ingredients.js')
   , db = mongoose.createConnection('localhost', 'foodie');
 
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -20,6 +21,7 @@ db.once('open', function () {
   var Recipe = db.model('Recipe', recipeSchema);
   var Chef = db.model('Chef', chefSchema);
   var Book = db.model('Book', bookSchema);
+  var Ingredient = db.model('Ingredient', ingredientSchema);
   
   // Express
 
@@ -47,12 +49,32 @@ db.once('open', function () {
   });
 
   // WWW
+
   app.get('/food/chefs', routes.chefs);
   app.get('/food/chefs/:chef', routes.chef);
   app.get('/food/recipes', routes.recipes);
   app.get('/food/recipes/:recipe', routes.recipe);
+  app.get('/food/recipes/:recipe/:view', routes.recipe);
+  app.get('/food/ingredients/:ingredient', routes.ingredient);
 
   // API
+  
+  // Ingredients 
+  
+  app.post('/api/food/ingredients', function(req, res) {
+    var ingredient = new Ingredient(req.body);
+    ingredient.save(function(err){
+        if (err)
+            console.log(err);
+        res.send("ingredient saved!\n");
+    });
+  });
+  
+  app.get('/api/food/ingredients', function(req, res) {
+    Ingredient.find(function (err, recipes) {
+      res.send(recipes);
+    });
+  });
   
   // Books 
   
@@ -61,7 +83,7 @@ db.once('open', function () {
     book.save(function(err){
         if (err)
             console.log(err);
-        res.send("saved!\n");
+        res.send("book saved!\n");
     });
   });
 
@@ -72,7 +94,7 @@ db.once('open', function () {
     recipe.save(function(err){
         if (err)
             console.log(err);
-        res.send("saved!\n");
+        res.send("recipe saved!\n");
     });
   });
 
@@ -84,7 +106,12 @@ db.once('open', function () {
 
   app.get('/api/food/recipes/:recipe', function(req, res) {
     Recipe.findOne({"key": req.params.recipe},  function (err, recipe) {
-        res.send(recipe);
+        var r = recipe.toObject();
+        Book.find({"author": recipe.chef}, function(err, books){
+            if (!err)
+                r.books = books
+            res.send(r);
+        })
     });
   });
 
@@ -95,7 +122,7 @@ db.once('open', function () {
     chef.save(function(err){
         if (err)
             console.log(err);
-        res.send("saved!\n");
+        res.send("chef saved!\n");
     });
   });
 
@@ -106,25 +133,17 @@ db.once('open', function () {
   });
 
   app.get('/api/food/chefs/:chef', function(req, res) {
-
-
     Chef.findOne({"key": req.params.chef}).populate('chef').exec(function (err, chef) {
         var c = chef.toObject();
-        var r = Recipe.find({"chef": chef.name}, function(err, recipes){
-            
+        Recipe.find({"chef": chef.name}, function(err, recipes){
             if (!err)
                 c.recipes = recipes
-            
-            var b = Book.find({"author": chef.name}, function(err, books){
-            
+            Book.find({"author": chef.name}, function(err, books){
                 if (!err)
                     c.books = books
-            
                 res.send(c);
             })
-            
         })
-
     });
   });
 
