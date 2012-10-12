@@ -52,6 +52,7 @@ db.once('open', function () {
 
   // WWW
 
+  app.get('/about', routes.about);
   app.get('/food/chefs', routes.chefs);
   app.get('/food/chefs/:chef', routes.chef);
   app.get('/food/recipes', routes.recipes);

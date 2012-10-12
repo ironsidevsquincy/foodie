@@ -1,12 +1,10 @@
 extends layout
 
 block content
-  h1= title
   script(type="text/javascript", src="/javascripts/chef.js")
 
-  h2(data-bind="text: name")
+  h2(data-bind="text: name + 's Recipes'")
 
-  h3 Recipes
   ul(data-bind="foreach: recipes")
     li
       a(data-bind="attr: {href: '/food/recipes/' + key}, text: name")

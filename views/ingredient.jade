@@ -1,11 +1,15 @@
 extends layout
 
 block content
-  h1= title
   script(type="text/javascript", src="/javascripts/ingredient.js")
 
   h2(data-bind="text: name")
   p(data-bind="text: description")
+  
+  img(src="http://www.brindisa.com/skin/1/images/logos/logo.gif")
 
+  h3 Suppliers
+  p
+   
   h3 Links
   a(data-bind="attr: {href: 'http://en.wikipedia.org/wiki/' + wikiId}") Wikipedia
