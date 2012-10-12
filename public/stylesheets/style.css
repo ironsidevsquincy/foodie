@@ -72,9 +72,13 @@ div#logo {
   display:inline-block;
   vertical-align: top;
   width:130px;
+  height:260px;
   float:left;
+  margin-left:10px;
+  margin-bottom:10px;
 }
 #ocado-list li h4{
   margin:0;
   font-size:0.9em;
+  margin-bottom:5px;
 }
