@@ -11,7 +11,6 @@ block content
         a(href="nigel-slater-salade-nicoise-classic-recipe/shopping")
           span view as shopping list
 
-
   h2(data-bind="text: name")
   div
     img(data-bind="attr: {src:hero}")
@@ -35,5 +34,22 @@ block content
 
   h3= "Wine"
   p Recommendations brought to you by wine.com
+  <!-- ko if: books.length > 1 -->
   h3= "Books"
   p A list of books this chef has written
+  ul(data-bind="foreach: books", class="books")
+    li
+        h3(data-bind="text: title")
+        img(data-bind="attr: {src: hero}")
+        p(data-bind="text: description")
+        p
+            span Our price: 
+            span(data-bind="text: price")
+        ul
+            span(data-bind="foreach: reviews")
+                li
+                    a(data-bind="attr: {href: uri}") Read our review
+            span(data-bind="foreach: extracts")
+                li
+                    a(data-bind="attr: {href: uri}") Read an extract
+  <!-- /ko -->
