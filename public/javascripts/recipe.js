@@ -10,17 +10,17 @@ reqwest({
         // get all the ingredients from ocado
         var ingredients = qwery('.ingredient');
         for (var i in ingredients) {
-          var ingredient = ingredients[i];
           reqwest({
-            url: '/ocado/' + bonzo(qwery('a', ingredient)).html(),
+            url: '/ocado/' + bonzo(qwery('a', ingredients[i])).html(),
             type: 'html',
             method: 'get',
             success: function(ingredientData) {
+              var ingredientName = encodeURIComponent(this.url.split('/').pop());
+              var ingredient = qwery('.ingredient a[href$="' + ingredientName + '"]', document.body);
               // add ocado data
-              bonzo(ingredient).append(ingredientData);
+              bonzo(bonzo(ingredient).parent()).append(ingredientData);
             }
           })
-          break;
         }
   		})
     }

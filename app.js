@@ -81,6 +81,8 @@ db.once('open', function () {
         var ingredient = window.$('<div></div>')
           .append(h3)
           .append(productImage.find('img'))
+
+        res.setHeader('Cache-Control', 'max-age=3600, public');
         res.send(ingredient.html())
       });
     })
