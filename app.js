@@ -22,7 +22,7 @@ db.once('open', function () {
   var Chef = db.model('Chef', chefSchema);
   var Book = db.model('Book', bookSchema);
   var Ingredient = db.model('Ingredient', ingredientSchema);
-  
+
   // Express
 
   var app = express();
@@ -58,9 +58,9 @@ db.once('open', function () {
   app.get('/food/ingredients/:ingredient', routes.ingredient);
 
   // API
-  
-  // Ingredients 
-  
+
+  // Ingredients
+
   app.post('/api/food/ingredients', function(req, res) {
     var ingredient = new Ingredient(req.body);
     ingredient.save(function(err){
@@ -69,13 +69,19 @@ db.once('open', function () {
         res.send("ingredient saved!\n");
     });
   });
-  
+
   app.get('/api/food/ingredients', function(req, res) {
     Ingredient.find(function (err, recipes) {
       res.send(recipes);
     });
   });
-  
+
+  app.get('/api/food/ingredients/:ingredient', function(req, res) {
+    Ingredient.findOne({'name': req.params.ingredient}, function (err, ingredient) {
+      res.send(ingredient);
+    });
+  });
+
   // Books
 
   app.post('/api/food/books', function(req, res) {

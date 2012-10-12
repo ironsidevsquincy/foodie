@@ -23,3 +23,6 @@ exports.ingredients = function(req, res){
   res.render('ingredients', {title: 'Ingredients'});
 };
 
+exports.ingredient = function(req, res){
+  res.render('ingredient', {title: 'Ingredient'});
+};

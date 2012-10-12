@@ -6,7 +6,6 @@ reqwest({
   	method: 'get',
   	success: function (chef) {
       domready(function() {
-      	console.log(chef.recipes);
         ko.applyBindings(chef);
       })
     }
