@@ -28,6 +28,10 @@ h1, h2 {
     text-shadow: rgb(201, 150, 0) 2px 2px 2px;
 }
 
+.books-container { 
+    clear: both;
+}
+
 .books img {
     display: inline-block;
     float: right;
@@ -64,5 +68,10 @@ div#logo {
     margin-left: -50px;
 }
 
-
+.biog {
+    width: 50%;
+    float: right;
+    background-color: lightblue;
+    padding: 11px;
+}
 

@@ -52,6 +52,9 @@ db.once('open', function () {
 
   // WWW
 
+  app.get('/', function(req, res){
+    res.redirect(301, '/about')
+  });
   app.get('/about', routes.about);
   app.get('/food/chefs', routes.chefs);
   app.get('/food/chefs/:chef', routes.chef);
