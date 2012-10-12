@@ -8,14 +8,17 @@ html
     script(type='text/javascript', src='/javascripts/components/reqwest/reqwest.js')
     script(type='text/javascript', src='/javascripts/components/qwery/qwery.js')
     script(type='text/javascript', src='/javascripts/components/bonzo/bonzo.js')
+    script(type='text/javascript', src='/javascripts/components/jquery-1.8.0.min.js')
   body
     div(id="logo")
     nav
         span Forager
-        span | 
+        span |
         a(href="/food/chefs") Chefs
+        span |
         a(href="/food/recipes") Recipes
+        span |
         a(href="/food/ingredients") Ingredients
         span |
-        a(href="/about") About the project 
+        a(href="/about") About the project
     block content

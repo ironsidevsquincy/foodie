@@ -8,12 +8,12 @@
     "isbn": "9780007256037",
     "reviews": [
         {
-            "uri": "books/2012/sep/23/kitchen-diaries-nigel-slater-review"
+            "uri": "http://beta.guardian.co.uk/books/2012/sep/23/kitchen-diaries-nigel-slater-review"
         }
     ],
     "extracts": [
         {
-            "uri": "lifeandstyle/2012/sep/16/nigel-slater-kitchen-diaries-2"
+            "uri": "http://beta.guardian.co.uk/lifeandstyle/2012/sep/16/nigel-slater-kitchen-diaries-2"
         }    
     ]
 }

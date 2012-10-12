@@ -6,10 +6,22 @@ block content
   h2(data-bind="text: name")
   p(data-bind="text: description")
   
-  img(src="http://www.brindisa.com/skin/1/images/logos/logo.gif")
 
   h3 Suppliers
-  p
-   
+  p Our pick of where you can buy up the best
+    span(data-bind="text: ' ' + name + '.'")
+  ul
+    li
+        h3 Cafe Brindisa
+        img(src="http://www.brindisa.com/skin/1/images/logos/logo.gif", width="100")
+        p We say, "The upsurge in Spanish food quality in London since the 1990s can in part be dated from the arrival in Borough Market of food importers Brindisa, bringing first-rate Iberian hams, cheeses and other essentials to the city almost for the first time. The firm's showcase tapas restaurants are equally a benchmark. In early 2011, star chef José Pizarro left to start José, but we haven't noticed any drop in standards, so you'll still find an ideal blend of superb ingredients and refined cooking (the latter normally confined to larger dishes).
+        ul
+            li
+                span Postcode: SE1 9AF
+            li
+                span Website:
+                a(href="http://www.brindisa.com/")  www.brindisa.com
+            li
+                span Opening times: Mon-Sun, 9am - midnight
   h3 Links
   a(data-bind="attr: {href: 'http://en.wikipedia.org/wiki/' + wikiId}") Wikipedia

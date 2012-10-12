@@ -52,6 +52,9 @@ db.once('open', function () {
 
   // WWW
 
+  app.get('/', function(req, res){
+    res.redirect(301, '/about')
+  });
   app.get('/about', routes.about);
   app.get('/food/chefs', routes.chefs);
   app.get('/food/chefs/:chef', routes.chef);
@@ -64,27 +67,8 @@ db.once('open', function () {
   // screen scrap ocado
   app.get('/ocado/:ingredient', function(req, res) {
     request('http://www.ocado.com/webshop/getSearchProducts.do?clearTabs=yes&isFreshSearch=true&entry=' + req.params.ingredient, function (error, response, body) {
-      // pull out first product from search
-      jsdom.env({
-        html: body,
-        scripts: [
-          'http://code.jquery.com/jquery-1.8.0.min.js'
-        ]
-      }, function (err, window) {
-        var product = window.$('#prodList .productDetails').first();
-        var productImage = product.find('.productImageContainer a');
-        var link = window.$('<a></a>')
-          .attr('href', 'http://www.ocado.com' + productImage.attr('href'))
-          .text(product.find('.productTitle').text() + ' - ' + product.find('.typicalPrice').text());
-        var h4 = window.$('<h4></h4>')
-          .append(link)
-        var ingredient = window.$('<div></div>')
-          .append(h4)
-          .append(productImage.find('img'))
-
-        res.setHeader('Cache-Control', 'max-age=3600, public');
-        res.send('<li>' + ingredient.html() + '</li>')
-      });
+      res.setHeader('Cache-Control', 'max-age=3600, public');
+      res.send(body)
     })
   });
 

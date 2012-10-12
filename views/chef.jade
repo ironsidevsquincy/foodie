@@ -5,6 +5,33 @@ block content
 
   h2(data-bind="text: name + 's Recipes'")
 
+  p(data-bind="text: biog", class="biog")
+
   ul(data-bind="foreach: recipes")
     li
       a(data-bind="attr: {href: '/food/recipes/' + key}, text: name")
+
+  div(class="books-container")
+      <!-- ko if: books.length > 1 -->
+      h3= "Books"
+      p A list of books this chef has written
+      ul(data-bind="foreach: books", class="books")
+        li
+          h3(data-bind="text: title")
+          img(data-bind="attr: {src: hero}")
+          p(data-bind="text: description")
+          p
+              span Our price: 
+              span(data-bind="text: price")
+          ul
+              span(data-bind="foreach: reviews")
+                  li
+                      a(data-bind="attr: {href: uri}") Read our review
+              span(data-bind="foreach: extracts")
+                  li
+                      a(data-bind="attr: {href: uri}") Read an extract
+              span
+                  li
+                      a(href="/") Buy the book 
+      <!-- /ko -->
+
