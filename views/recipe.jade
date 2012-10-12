@@ -20,7 +20,7 @@ block content
     span view as shopping list
   h3 Ingredients
   ul(data-bind="foreach: ingredients")
-    li
+    li.ingredient
       p
         span(data-bind="text: quantity + ' '")
         a(data-bind="text: ingredient, attr: {href: '/food/ingredients/' + encodeURIComponent(ingredient)}")

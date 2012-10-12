@@ -12,7 +12,9 @@ var express = require('express')
   , chefSchema = require('./models/chefs.js')
   , bookSchema = require('./models/books.js')
   , ingredientSchema = require('./models/ingredients.js')
-  , db = mongoose.createConnection('localhost', 'foodie');
+  , db = mongoose.createConnection('localhost', 'foodie')
+  , jsdom = require('jsdom')
+  , request = require('request');
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
@@ -56,7 +58,33 @@ db.once('open', function () {
   app.get('/food/recipes', routes.recipes);
   app.get('/food/recipes/:recipe', routes.recipe);
   app.get('/food/recipes/:recipe/:view', routes.recipe);
+  app.get('/food/ingredients', routes.ingredients);
   app.get('/food/ingredients/:ingredient', routes.ingredient);
+
+  // screen scrap ocado
+  app.get('/ocado/:ingredient', function(req, res) {
+    request('http://www.ocado.com/webshop/getSearchProducts.do?clearTabs=yes&isFreshSearch=true&entry=' + req.params.ingredient, function (error, response, body) {
+      // pull out first product from search
+      jsdom.env({
+        html: body,
+        scripts: [
+          'http://code.jquery.com/jquery-1.8.0.min.js'
+        ]
+      }, function (err, window) {
+        var product = window.$('#prodList .productDetails').first();
+        var productImage = product.find('.productImageContainer a');
+        var link = window.$('<a></a>')
+          .attr('href', 'http://www.ocado.com' + productImage.attr('href'))
+          .text('Buy from Ocado - ' + product.find('.typicalPrice').text());
+        var h3 = window.$('<h3></h3>')
+          .append(link)
+        var ingredient = window.$('<div></div>')
+          .append(h3)
+          .append(productImage.find('img'))
+        res.send(ingredient.html())
+      });
+    })
+  });
 
   // API
 
@@ -67,7 +95,7 @@ db.once('open', function () {
     ingredient.save(function(err){
         if (err)
             console.log(err);
-        res.send("ingredient saved!\n");
+        res.send(req.body.name + " ingredient saved!\n");
     });
   });
 
@@ -90,7 +118,7 @@ db.once('open', function () {
     book.save(function(err){
         if (err)
             console.log(err);
-        res.send("book saved!\n");
+        res.send(req.body.title + " book saved!\n");
     });
   });
 
@@ -101,7 +129,7 @@ db.once('open', function () {
     recipe.save(function(err){
         if (err)
             console.log(err);
-        res.send("recipe saved!\n");
+        res.send(req.body.name + " recipe saved!\n");
     });
   });
 
@@ -132,7 +160,7 @@ db.once('open', function () {
     chef.save(function(err){
         if (err)
             console.log(err);
-        res.send("chef saved!\n");
+        res.send(req.body.name + " chef saved!\n");
     });
   });
 

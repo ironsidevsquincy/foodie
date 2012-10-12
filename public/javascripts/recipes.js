@@ -3,9 +3,9 @@ reqwest({
     type: 'json',
   	method: 'get',
   	success: function (recipes) {
-        domready(function() {
-			ko.applyBindings({'recipes': recipes});
-		})
+      domready(function() {
+  			ko.applyBindings({'recipes': recipes});
+  		})
     }
 })
 
