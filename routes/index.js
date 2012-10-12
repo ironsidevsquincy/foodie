@@ -1,4 +1,8 @@
 
+exports.about = function(req, res){
+  res.render('about', {'title': 'About this project'});
+};
+
 exports.chefs = function(req, res){
   res.render('chefs', {title: 'Chefs'});
 };

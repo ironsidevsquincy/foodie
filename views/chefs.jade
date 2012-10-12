@@ -4,6 +4,6 @@ block content
   h1= title
   script(type="text/javascript", src="/javascripts/chefs.js")
 
-  div(data-bind="foreach: chefs")
-    h2
+  ul(data-bind="foreach: chefs")
+    li 
       a(data-bind="attr: {href: '/food/chefs/' + key}, text: name")
