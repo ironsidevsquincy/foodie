@@ -5,8 +5,15 @@ block content
   script(type="text/javascript", src="/javascripts/recipe.js")
 
   h2(data-bind="text: name")
+  <!-- ko with: chef -->
   p By
-    a(data-bind="text: ' ' + chef", href="/food/chefs/...")
+    <!-- ko if: name -->
+    a(data-bind="text: ' ' + name, attr: {href: '/food/chefs/' + key}")
+    <!-- /ko -->
+    <!-- ko ifnot: name -->
+    span(data-bind="text: $data")
+    <!-- /ko -->
+  <!-- /ko -->
   h3 Ingredients
   div
     img(data-bind="src: hero")

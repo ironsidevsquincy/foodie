@@ -20,7 +20,7 @@ db.once('open', function () {
   var Recipe = db.model('Recipe', recipeSchema);
   var Chef = db.model('Chef', chefSchema);
   var Book = db.model('Book', bookSchema);
-  
+
   // Express
 
   var app = express();
@@ -53,9 +53,9 @@ db.once('open', function () {
   app.get('/food/recipes/:recipe', routes.recipe);
 
   // API
-  
-  // Books 
-  
+
+  // Books
+
   app.post('/api/food/books', function(req, res) {
     var book = new Book(req.body); // TODO validation
     book.save(function(err){
@@ -66,7 +66,7 @@ db.once('open', function () {
   });
 
   // Recipes
-  
+
   app.post('/api/food/recipes', function(req, res) {
     var recipe = new Recipe(req.body); // TODO validation
     recipe.save(function(err){
@@ -84,7 +84,12 @@ db.once('open', function () {
 
   app.get('/api/food/recipes/:recipe', function(req, res) {
     Recipe.findOne({"key": req.params.recipe},  function (err, recipe) {
-        res.send(recipe);
+
+      var r = recipe.toObject();
+      var c = Chef.findOne({"name": recipe.chef}, function(err, chef){
+        if (!err && chef) r.chef = chef
+        res.send(r);
+        })
     });
   });
 
@@ -111,18 +116,18 @@ db.once('open', function () {
     Chef.findOne({"key": req.params.chef}).populate('chef').exec(function (err, chef) {
         var c = chef.toObject();
         var r = Recipe.find({"chef": chef.name}, function(err, recipes){
-            
+
             if (!err)
                 c.recipes = recipes
-            
+
             var b = Book.find({"author": chef.name}, function(err, books){
-            
+
                 if (!err)
                     c.books = books
-            
+
                 res.send(c);
             })
-            
+
         })
 
     });
