@@ -1,1 +1,9 @@
-ingredient
+extends layout
+
+block content
+  h1= title
+  script(type="text/javascript", src="/javascripts/ingredients.js")
+
+  div(data-bind="foreach: ingredients")
+    h2
+      a(data-bind="attr: {href: '/food/ingredients/' + name}, text: name")

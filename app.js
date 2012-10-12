@@ -57,6 +57,7 @@ db.once('open', function () {
   app.get('/food/recipes', routes.recipes);
   app.get('/food/recipes/:recipe', routes.recipe);
   app.get('/food/recipes/:recipe/:view', routes.recipe);
+  app.get('/food/ingredients', routes.ingredients);
   app.get('/food/ingredients/:ingredient', routes.ingredient);
 
   // screen scrap ocado
